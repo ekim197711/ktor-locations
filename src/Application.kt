@@ -5,6 +5,7 @@ import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
+import io.ktor.features.DefaultHeaders
 import io.ktor.http.ContentType
 import io.ktor.jackson.jackson
 import io.ktor.locations.Locations
@@ -19,6 +20,11 @@ fun main(args: Array<String>): Unit = io.ktor.server.tomcat.EngineMain.main(args
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     install(Locations) {
+    }
+
+    install(DefaultHeaders){
+        header("Minecraft-Cool-Player", "Mike")
+        header("Video_Topic", "DefaultHeader_Ktor_Kotlin")
     }
 
     install(ContentNegotiation) {
